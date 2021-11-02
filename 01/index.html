@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>30 Day Map Challenge :: Points -- Parks in Secaucus, NJ</title>
+
+    <style type="text/css">
+        html,
+        body {
+            height: 100%;
+            width: 100%;
+        }
+
+        #map {
+            height: 100%;
+            width: 100%;
+        }
+    </style>
+    <script>
+        const parks = [
+            { 'title': 'Acorn Park', 'lat': 40.805124, 'lng': -74.056088 },
+            { 'title': 'Buchmuller Park', 'lat': 40.790809, 'lng': -74.056009 },
+            { 'title': 'Duck Pond', 'lat': 40.772377, 'lng': -74.068569 },
+            { 'title': 'Eckel Park', 'lat': 40.796394, 'lng': -74.06518 },
+            { 'title': 'Fountain Park', 'lat': 40.787585, 'lng': -74.059957 },
+            { 'title': 'Hayes Family Playground', 'lat': 40.764224, 'lng': -74.082436 },
+            { 'title': 'Ivanoski Park', 'lat': 40.771818, 'lng': -74.063855 },
+            { 'title': 'Kane Stadium', 'lat': 40.784517, 'lng': -74.054376 },
+            { 'title': 'Laurel Hill County Park', 'lat': 40.760895, 'lng': -74.088684 },
+            { 'title': 'Mill Creek Marsh', 'lat': 40.795173, 'lng': -74.050821 },
+            { 'title': 'Mill Creek Park', 'lat': 40.795793, 'lng': -74.051228 },
+            { 'title': 'Mill Creek Point Park', 'lat': 40.80588, 'lng': -74.043802 },
+            { 'title': 'Monarch Park', 'lat': 40.795417, 'lng': -74.0546 },
+            { 'title': 'Naters Park', 'lat': 40.797506, 'lng': -74.05126 },
+            { 'title': 'Oak Lane Park', 'lat': 40.804857, 'lng': -74.057391 },
+            { 'title': 'Riverwalk Access', 'lat': 40.804637, 'lng': -74.054891 },
+            { 'title': 'Schmidt&#39;s Woods', 'lat': 40.800304, 'lng': -74.050648 },
+            { 'title': 'Shetik Field', 'lat': 40.773102, 'lng': -74.065149 },
+            { 'title': 'Smit Park', 'lat': 40.794676, 'lng': -74.054897 },
+            { 'title': 'Snipes Park', 'lat': 40.795975, 'lng': -74.07026 },
+            { 'title': 'Trolley Park', 'lat': 40.804059, 'lng': -74.059761 },
+        ];
+
+        function initMap() {
+            const map = new google.maps.Map(document.getElementById("map"), {});
+            const bounds = new google.maps.LatLngBounds();
+            parks.forEach((park) => {
+                const marker = new google.maps.Marker({
+                    position: park,
+                    map: map,
+                    title: park.title,
+                });
+                bounds.extend(park);
+            });
+            map.fitBounds(bounds);
+        }
+    </script>
+</head>
+
+<body>
+    <div id="map"></div>
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD_OGmz4ktflVAXJSg0yCaTzpNT2RvBGaU&callback=initMap&libraries=&v=weekly"
+        async></script>
+</body>
+
+</html>
