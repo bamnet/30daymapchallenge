@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>30 Day Map Challenge :: Points -- Parks in Secaucus, NJ</title>
+
+    <style type="text/css">
+        html,
+        body {
+            height: 100%;
+            width: 100%;
+        }
+
+        #map {
+            height: 100%;
+            width: 100%;
+        }
+    </style>
+    <script>
+        const rides = [
+            'ChIJPaSvyJiA54gRbNp1Q1aG0A8', // Astro Orbiter
+            'ChIJmyFyBJmA54gRZPpjjAfF-j4', // The Barnstormer
+            'ChIJf_yCtqOA54gRWHzi--HkWFU', // Big Thunder Mountain Railroad
+            'ChIJZUpWLZ-A54gRSXZE8ElEfHk', // Buzz Lightyear’s Space Ranger Spin
+            'ChIJ5_yC4piA54gRrWHqMU7NZ4E', // Dumbo the Flying Elephant
+            'ChIJ8a87VqKA54gRVrP8dHptifo', // The Haunted Mansion
+            'ChIJZ4mxe6KA54gRhkbd9uRKOUI', // “it’s a small world”
+            'ChIJ4x6xj6GA54gRcYUrS30rBi8', // Jungle Cruise
+            'ChIJbdBqPeyB54gR3cRKXGi9UGA', // Liberty Square Riverboat
+            'ChIJlWcO6ZiA54gRCk2LSxFX5gg', // Mad Tea Party
+            'ChIJMRFKiKGA54gRN1iAboC0f1A', // The Magic Carpets of Aladdin
+            'ChIJL2GllJiA54gR9sRoR558Lcg', // The Many Adventures of Winnie the Pooh
+            'ChIJTdP-c6KA54gR6HNNoVeoAYU', // Peter Pan’s Flight
+            'ChIJAeGceKGA54gRqIsR7JQ9o74', // Pirates of the Caribbean
+            'ChIJBcNOmZiA54gRDgYiCCi748U', // Prince Charming Regal Carrousel
+            'ChIJTd8zkpiA54gRvdy2hIAmyG8', // Seven Dwarf’s Mine Train
+            { lat: 28.418712, lng: -81.578122 }, // Space Mountain
+            'ChIJo8Fi2qOA54gRlnBwXwFrHok', // Splash Mountain
+            'ChIJ_5Jg25iA54gRrBkznGqccJY', // Tomorrowland Speedway
+            'ChIJ29ec1JiA54gROAzuCa5tUNc', // Tomorrowland Transit Authority People Mover
+            'ChIJQyte9piA54gRpAA8j7Qe2pk', // Under the Sea – Journey of the Little Mermaid
+            { lat: 28.416545, lng: -81.581215 }, // Walt Disney World Railroad
+            'ChIJ5zfYKZ-A54gRmP1Afcl6gCc', // Walt Disney’s Carousel of Progress
+        ];
+
+        const entrance = { lat: 28.41602, lng: -81.58120 };
+
+        function initMap() {
+            const map = new google.maps.Map(document.getElementById("map"), {});
+            const directionsService = new google.maps.DirectionsService();
+            const directionsRenderer = new google.maps.DirectionsRenderer({ map: map });
+            const req = {
+                origin: entrance,
+                destination: entrance,
+                travelMode: google.maps.TravelMode.WALKING,
+                waypoints: rides.map((ride) => {
+                    if (typeof ride === 'object') {
+                        return { location: ride };
+                    } else {
+                        return { location: { placeId: ride } };
+                    }
+                }),
+                optimizeWaypoints: true,
+            };
+            directionsService.route(req).then(result => {
+                directionsRenderer.setDirections(result);
+            });
+        }
+    </script>
+</head>
+
+<body>
+    <div id="map"></div>
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD_OGmz4ktflVAXJSg0yCaTzpNT2RvBGaU&callback=initMap&libraries=&v=weekly"
+        async></script>
+</body>
+
+</html>
